@@ -1,5 +1,5 @@
-# Base image: JDK 17 để chạy ứng dụng Java
-FROM openjdk:17-jdk
+# Base image: JDK 21 để chạy ứng dụng Java
+FROM openjdk:21-jdk-slim
 
 # Copy file JAR đã build sẵn từ Maven (sẽ nằm trong /target)
 COPY target/*.jar app.jar
