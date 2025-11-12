@@ -1,0 +1,36 @@
+pipeline{
+    agent any
+    tools {
+        maven "Maven3"
+        jdk "jdk21"
+    }
+    environment {
+      IMAGE_NAME='ducnt65/2504-repo'
+      IMG_TAG="tag-${env.BUILD_NUMBER}"
+    }
+    
+    stages {
+        stage("Checkout") {
+            steps{
+                git 'https://github.com/nguyentduc89/2504-java-maven.git'
+                }
+        }
+        stage("Buld code to jar"){
+            steps {
+                sh 'java -version'
+                sh 'mvn -version'
+                sh 'mvn clean package -DskipTests'
+            }
+        }
+        stage ("Build Image"){
+            steps {
+                script {
+                    def img = docker.build("${IMAGE_NAME}:${IMG_TAG}")
+                    docker.withRegistry("", "dockerhub-ducnt65"){
+                        img.push()
+                    }
+                }
+            }
+        }
+    }
+}
