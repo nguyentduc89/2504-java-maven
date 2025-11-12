@@ -18,6 +18,8 @@ spec:
         image: ducnt65/2504-repo:tag-38
         ports:
         - containerPort: 8080
+      imagePullSecrets:
+      - name: 2504-registry-secre
 ---
 apiVersion: v1
 kind: Service
