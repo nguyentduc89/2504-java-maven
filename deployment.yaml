@@ -5,7 +5,7 @@ metadata:
   namespace: app-2504
 spec:
   replicas: 1
-    selector:
+  selector:
     matchLabels:
       app: app-2504
   template:
