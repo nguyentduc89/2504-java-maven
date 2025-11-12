@@ -16,6 +16,8 @@ pipeline{
                 script {
                     sh '''
                         sed -i "s#image: .*#image: ducnt65/2504-repo:${IMG_TAG}#" deployment.yaml
+                        git config --global user.email "nguyentduc89@gmail.com"
+                        git config --global user.name "Trung Duc"
                         git add .
                         git commit -m "update tag to ${IMG_TAG}"
                         git push origin main
